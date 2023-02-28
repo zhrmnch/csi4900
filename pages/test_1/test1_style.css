@@ -25,7 +25,7 @@ h1 {
 
 /* Style the email container to take up most of the screen */
 #email-container {
-    height: 70vh;
+    height: 75vh;
     width: 80vw;
     margin: 0 auto;
     background-color: #fff;

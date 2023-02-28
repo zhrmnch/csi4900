@@ -4,6 +4,8 @@ var currentEmail = 1;
 // Define an array to keep track of the user's answers
 var answers = [];
 
+
+
 // Define a function to embed the next email
 function nextEmail() {
 
@@ -21,7 +23,14 @@ function nextEmail() {
 
     // Check if the selected value matches the answer for the current email
     if ((selectedValue === "phishing" && currentEmail === 1) ||
-        (selectedValue === "non-phishing" && currentEmail === 2)) {
+        (selectedValue === "phishing" && currentEmail === 2)||
+        (selectedValue === "non-phishing" && currentEmail === 3) || 
+        (selectedValue === "phishing" && currentEmail === 4) || 
+        (selectedValue === "non-phishing" && currentEmail === 5) || 
+        (selectedValue === "phishing" && currentEmail === 6) || 
+        (selectedValue === "phishing" && currentEmail === 7) || 
+        (selectedValue === "non-phishing" && currentEmail === 8)
+        ) {
         answers.push(currentEmail + " -> Correct -> Time: " + timeSpent / 1000 + " seconds");
     } else {
         answers.push(currentEmail + " -> Wrong -> Time: " + timeSpent / 1000 + " seconds");
@@ -33,7 +42,7 @@ function nextEmail() {
         ele[i].checked = false;
     }
 
-    if (currentEmail == 2) {
+    if (currentEmail == 8) {
         // Display the user's results when they reach the end of the emails
         alert("Quiz complete! Results:\n" + answers.join("\n"));
         currentEmail = 1;
@@ -49,7 +58,7 @@ function nextEmail() {
 
     // Create an iframe element to embed the email HTML file
     var iframe = document.createElement("iframe");
-    iframe.src = "emails/email" + currentEmail + ".html";
+    iframe.src = "email_test1/email_" + currentEmail + ".html";
 
     // Add the iframe element to the container
     container.appendChild(iframe);
@@ -67,7 +76,7 @@ container.innerHTML = "";
 
 // Create an iframe element to embed the email HTML file
 var iframe = document.createElement("iframe");
-iframe.src = "emails/email1.html";
+iframe.src = "email_test1/email_1.html";
 
 // Add the iframe element to the container
 container.appendChild(iframe);
