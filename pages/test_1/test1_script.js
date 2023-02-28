@@ -44,7 +44,9 @@ function nextEmail() {
 
     if (currentEmail == 8) {
         // Display the user's results when they reach the end of the emails
-        alert("Quiz complete! Results:\n" + answers.join("\n"));
+        testTimeSpent = Date.now() - testStart;
+        answers.push("Quiz Complete. Total time spent: " + testTimeSpent / 1000 + " seconds");
+        alert(answers.join("\n"));
         currentEmail = 1;
     } else {
         currentEmail++;
@@ -83,3 +85,6 @@ container.appendChild(iframe);
 
 // Record the start time for the first question
 var questionStart = Date.now();
+
+// Record the start time for the test
+var testStart = Date.now();
