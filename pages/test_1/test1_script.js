@@ -22,14 +22,14 @@ function nextEmail() {
     var timeSpent = Date.now() - questionStart;
 
     // Check if the selected value matches the answer for the current email
-    if ((selectedValue === "phishing" && currentEmail === 1) ||
-        (selectedValue === "phishing" && currentEmail === 2)||
-        (selectedValue === "non-phishing" && currentEmail === 3) || 
-        (selectedValue === "phishing" && currentEmail === 4) || 
-        (selectedValue === "non-phishing" && currentEmail === 5) || 
-        (selectedValue === "phishing" && currentEmail === 6) || 
-        (selectedValue === "phishing" && currentEmail === 7) || 
-        (selectedValue === "non-phishing" && currentEmail === 8)
+    if ((selectedValue === "phishing" && currentEmail === 1) || // email_60
+        (selectedValue === "phishing" && currentEmail === 2)|| // email_73
+        (selectedValue === "non-phishing" && currentEmail === 3) || // email_35
+        (selectedValue === "phishing" && currentEmail === 4) || // email_51
+        (selectedValue === "non-phishing" && currentEmail === 5) || // email_48
+        (selectedValue === "phishing" && currentEmail === 6) || // email_58
+        (selectedValue === "phishing" && currentEmail === 7) || // email 63
+        (selectedValue === "non-phishing" && currentEmail === 8) // email_67
         ) {
         answers.push(currentEmail + " -> Correct -> Time: " + timeSpent / 1000 + " seconds");
     } else {

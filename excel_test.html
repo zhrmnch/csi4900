@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Update Excel File</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js%22%3E"></script>
+</head>
+
+<body>
+    <input type="file" onchange="uploadExcel(event)">
+
+    <script>
+        function uploadExcel(event) {
+            var files = event.target.files;
+            var fileReader = new FileReader();
+            fileReader.onload = function (event) {
+                var data = new Uint8Array(event.target.result);
+                var workbook = XLSX.read(data, { type: 'array' });
+                // Do something with the workbook object, e.g. update data, etc.
+                var updatedData = [
+                    ['Name', 'Age', 'Country'],
+                    ['John', 30, 'USA'],
+                    ['Jane', 25, 'Canada'],
+                    ['Bob', 40, 'Australia']
+                ];
+                var updatedWorksheet = XLSX.utils.aoa_to_sheet(updatedData);
+                workbook.Sheets['Sheet1'] = updatedWorksheet;
+                // Convert the workbook back to binary data and upload to GitHub
+                var binaryData = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
+                var xhr = new XMLHttpRequest();
+                xhr.open('PUT', 'https://api.github.com/repos/Dulien/csi4900/contents/excel_test.xlsx', true);
+                xhr.setRequestHeader('Authorization', 'token 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');
+                xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        console.log('Excel file updated successfully!');
+                    }
+                };
+                xhr.send(binaryData);
+            };
+            fileReader.readAsArrayBuffer(files[0]);
+        }
+    </script>
+</body>
+
+</html>
