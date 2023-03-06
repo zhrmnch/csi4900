@@ -47,7 +47,7 @@
 	</style>
 </head>
 <body>
-	<form>
+	<form method="POST" action="../Back-end/save_info.php">
 		<label for="name">Name:</label>
 		<input type="text" id="name" name="name" required>
 
@@ -69,11 +69,11 @@
 		<label for="tech-field">Are you in a tech related field?</label>
 		<div>
 			<input type="radio" id="yes" name="tech-field" value="yes" required>
-			<label for="yes">Yes</label>
+			<label for="TRUE">Yes</label>
 		</div>
 		<div>
 			<input type="radio" id="no" name="tech-field" value="no">
-			<label for="no">No</label>
+			<label for="FALSE">No</label>
 		</div>
 
 		<input type="submit" value="Submit">
