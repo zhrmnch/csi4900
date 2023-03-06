@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Phishing Email Identification Quiz</title>
+    <style>
+        .quiz-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 20px;
+          font-family: Arial, sans-serif;
+          font-size: 16px;
+        }
+        
+        .quiz-question {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        
+        .quiz-iframe {
+          width: 100%;
+          height: 400px;
+          margin-bottom: 20px;
+        }
+        
+        .quiz-options {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          margin-bottom: 20px;
+        }
+        
+        .quiz-options label {
+          margin-right: 20px;
+        }
+        
+        #submit-btn {
+          background-color: #4CAF50;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin-top: 10px;
+          cursor: pointer;
+          border-radius: 4px;
+        }
+        
+        #submit-btn:hover {
+          background-color: #3e8e41;
+        }
+        
+        .quiz-result {
+          text-align: center;
+          font-weight: bold;
+          margin-top: 20px;
+        }
+        
+        .result-correct {
+          color: green;
+        }
+        
+        .result-incorrect {
+          color: red;
+        }
+      </style>
+      
+  </head>
+  <body>
+    <div class="quiz-container">
+      <div class="quiz-question">
+        <h2>Identify the Phishing Email Attributes</h2>
+        <p>Identify which of the following attributes are present in the email below:</p>
+        <ul>
+          <li>General Language</li>
+          <li>Spelling/Grammatical Errors</li>
+          <li>Spoofed Email Sender</li>
+          <li>Urgent Language</li>
+          <li>Spoofed URL</li>
+          <li>Wrong Redirect</li>
+        </ul>
+      </div>
+      <div class="quiz-iframe">
+        <iframe src="https://example.com/phishing-email"></iframe>
+      </div>
+      <div class="quiz-options">
+        <label><input type="checkbox" name="attribute" value="general">General Language</label><br>
+        <label><input type="checkbox" name="attribute" value="spelling">Spelling/Grammatical Errors</label><br>
+        <label><input type="checkbox" name="attribute" value="spoofed-sender">Spoofed Email Sender</label><br>
+        <label><input type="checkbox" name="attribute" value="urgent">Urgent Language</label><br>
+        <label><input type="checkbox" name="attribute" value="spoofed-url">Spoofed URL</label><br>
+        <label><input type="checkbox" name="attribute" value="wrong-redirect">Wrong Redirect</label><br>
+        <button type="submit" id="submit-btn">Submit</button>
+      </div>
+      <div class="quiz-result">
+        <p id="result-text"></p>
+      </div>
+    </div>
+    
+    <script>
+      const attributes = ['general', 'spelling', 'spoofed-sender', 'urgent', 'spoofed-url', 'wrong-redirect'];
+      const correctAnswers = ['general', 'spelling', 'spoofed-sender', 'spoofed-url'];
+      
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.addEventListener('click', function() {
+        const selectedAttributes = Array.from(document.querySelectorAll('input[type=checkbox]:checked'))
+                                         .map(checkbox => checkbox.value);
+        const correctSelected = selectedAttributes.filter(attr => correctAnswers.includes(attr));
+        const incorrectSelected = selectedAttributes.filter(attr => !correctAnswers.includes(attr));
+        
+        const resultText = document.getElementById('result-text');
+        if (correctSelected.length === correctAnswers.length && incorrectSelected.length === 0) {
+          resultText.textContent = "Congratulations! You correctly identified all the phishing email attributes.";
+          resultText.classList.add('result-correct');
+        } else {
+          const incorrectAnswers = correctAnswers.filter(attr => !selectedAttributes.includes(attr));
+          resultText.textContent = `You correctly identified ${correctSelected.length} out of ${correctAnswers.length} phishing email attributes. Incorrect attributes: ${incorrectSelected.join(', ')}. Missed attributes: ${incorrectAnswers.join(', ')}.`;
+          resultText.classList.add('result-incorrect');
+        }
+      });
+    </script>
+  </body>
+</html>
