@@ -25,9 +25,11 @@
     $confidence = $_POST['confidence'];
     $tech_field = $_POST['tech-field'];
 
+    $sql_get_len = "SELECT COUNT(*) FROM user_info";
 
-    // Step 2: Prepare an SQL statement to insert the name into the database
-    $sql = "INSERT INTO user_information (name,confidence,tech_field) VALUES ( '$name', $confidence, $tech_field)";
+    $user_group = $sql_get_len % 3;
+
+    $sql_insert = "INSERT INTO user_info (user_name,user_group,user_confidence,is_tech_field) VALUES ( '$name', $user_group, $confidence, $tech_field)";
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
