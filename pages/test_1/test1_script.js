@@ -3,8 +3,21 @@ var currentEmail = 1;
 
 // Define an array to keep track of the user's answers
 var answers = [];
+var answersCSV = [];
+var finalAnswerCSV = [];
 
-
+function downloadCSV(array) {
+    const csv = array.map(row => row.join(",")).join("\n");
+    const blob = new Blob([csv], {type: "text/csv"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "data.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
 
 // Define a function to embed the next email
 function nextEmail() {
@@ -32,9 +45,12 @@ function nextEmail() {
         (selectedValue === "non-phishing" && currentEmail === 8) // email_67
         ) {
         answers.push(currentEmail + " -> Correct -> Time: " + timeSpent / 1000 + " seconds");
+        answersCSV.push("Correct");
     } else {
         answers.push(currentEmail + " -> Wrong -> Time: " + timeSpent / 1000 + " seconds");
+        answersCSV.push("Wrong");
     }
+    answersCSV.push(timeSpent/1000)
 
     // Clear radio button values
     var ele = document.querySelectorAll("input[type=radio]");
@@ -45,6 +61,11 @@ function nextEmail() {
     if (currentEmail == 8) {
         // Display the user's results when they reach the end of the emails
         testTimeSpent = Date.now() - testStart;
+        answersCSV.push(testTimeSpent/1000);
+        finalAnswerCSV.push(["Q1A","Q1T","Q2A","Q2T","Q3A","Q3T","Q4A","Q4T","Q5A","Q5T","Q6A","Q6T","Q7A","Q7T","Q8A","Q8T","TotalT"])
+        finalAnswerCSV.push(answersCSV)
+        console.log(finalAnswerCSV)
+        downloadCSV(finalAnswerCSV);
         answers.push("Quiz Complete. Total time spent: " + testTimeSpent / 1000 + " seconds");
         alert(answers.join("\n"));
         currentEmail = 1;
