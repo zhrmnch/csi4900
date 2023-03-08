@@ -27,71 +27,89 @@
                 <input type="checkbox" name="wrong-redirect" id="wrong-redirect" value="true"> <label
                     for="wrong-redirect">Wrong Redirect</label><br>
                 <br>
-                <button type="submit">Submit</button>
-                <button onclick="nextEmail()">Next Question</button>
+                <button type="submit">Check Answers</button>
             </form>
             <br>
+            <button id="next-email" onclick="nextEmail()">Next Question</button>
             <div id="result"></div>
         </div>
     </div>
     <script>
+
+        
         function nextEmail() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = false;
+            }
+            document.getElementById("next-email").style.visibility = 'hidden';
+            document.getElementById("result").innerHTML = "";
+
             var timeSpent = Date.now() - questionStart;
         
             if (currentEmail == 8) {
                 testTimeSpent = Date.now() - testStart;
-                answers.push("Quiz Complete. Total time spent: " + testTimeSpent / 1000 + " seconds");
                 currentEmail = 1;
             } else {
                 currentEmail++;
             }
-        
+            
+            // iframe
             var container = document.getElementById("email-container");
             container.innerHTML = "";
             var iframe = document.createElement("iframe");
             iframe.src = "email_learn/email_" + currentEmail + ".html";
             container.appendChild(iframe);
+
             questionStart = Date.now();
+            toggleButton();
+        }
+
+        function toggleButton() {
+            var button = document.getElementById("next-email");
+            if (button.style.display === "none") {
+              button.style.display = "block";
+            } else {
+              button.style.display = "none";
+            }
         }
 
         document.getElementById("quiz-form").addEventListener("submit", function (event) {
             event.preventDefault();
             let checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
-            let selected = [];
+            let selectedAnswers  = [];
+
             for (var i = 0; i < checkboxes.length; i++) {
-                selected.push(checkboxes[i].name);
+                selectedAnswers.push(checkboxes[i].name);
             }
-            let incorrect = [];
-            if (!selected.includes("general-language")) {
-                incorrect.push("General Language");
+
+            let isCorrect = []
+            if (currentEmail === 1) {
+                isCorrect = correctAnswers1.every(answer => selectedAnswers.includes(answer));
             }
-            if (!selected.includes("spelling-grammatical-errors")) {
-                incorrect.push("Spelling/Grammatical Errors");
-            }
-            if (!selected.includes("spoofed-email-sender")) {
-                incorrect.push("Spoofed Email Sender");
-            }
-            if (!selected.includes("urgent-language")) {
-                incorrect.push("Urgent Language");
-            }
-            if (!selected.includes("spoofed-url")) {
-                incorrect.push("Spoofed URL");
-            }
-            if (!selected.includes("wrong-redirect")) {
-                incorrect.push("Wrong Redirect");
-            }
-            if (incorrect.length == 0) {
-                document.getElementById("result").innerHTML = "Congratulations! You correctly identified all the attributes in the phishing email.";
+            
+            if (!isCorrect) {
+                const incorrectAnswers = correctAnswers1.filter(answer => !selectedAnswers.includes(answer));
+                document.getElementById("result").innerHTML = `You got the following answers wrong: ${incorrectAnswers.join(', ')}.`;
             } else {
-                document.getElementById("result").innerHTML = "The following attributes are incorrect: " + incorrect.join(", ");
+                document.getElementById("result").innerHTML ='Congratulations, you got all the answers correct!';
+                toggleButton();
             }
         });
+
+        let answersDict = ["general-language", "spelling-grammatical-errors", "spoofed-email-sender", "urgent-language", "spoofed-url", "wrong-redirect"];
+        let correctAnswers1 = ["spelling-grammatical-errors", "urgent-language", "wrong-redirect"];
+
+
+        // iframe
         var currentEmail = 1;
         var container = document.getElementById("email-container");
         container.innerHTML = "";
         var iframe = document.createElement("iframe");
         iframe.src = "email_learn/email_1.html";
         container.appendChild(iframe);
+
+        toggleButton();
         var questionStart = Date.now();
         var testStart = Date.now();
 
