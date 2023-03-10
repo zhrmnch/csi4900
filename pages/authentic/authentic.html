@@ -67,17 +67,19 @@
 
         function toggleButton() {
             var button = document.getElementById("next-email");
-            if (button.style.display === "none") {
-              button.style.display = "block";
+            if (button.style.visibility === "hidden") {
+              button.style.visibility = "visible";
             } else {
-              button.style.display = "none";
+              button.style.visibility = "hidden";
             }
+            
         }
 
         document.getElementById("quiz-form").addEventListener("submit", function (event) {
             event.preventDefault();
             let checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
             let selectedAnswers  = [];
+            let incorrectAnswers = [];
 
             for (var i = 0; i < checkboxes.length; i++) {
                 selectedAnswers.push(checkboxes[i].name);
@@ -86,10 +88,16 @@
             let isCorrect = []
             if (currentEmail === 1) {
                 isCorrect = correctAnswers1.every(answer => selectedAnswers.includes(answer));
+                incorrectAnswers = correctAnswers1.filter(answer => !selectedAnswers.includes(answer));
+            } else if (currentEmail === 2) {
+                isCorrect = correctAnswers2.every(answer => selectedAnswers.includes(answer));
+                incorrectAnswers = correctAnswers2.filter(answer => !selectedAnswers.includes(answer));
+            } else if (currentEmail === 3) {
+                isCorrect = correctAnswers3.every(answer => selectedAnswers.includes(answer));
+                incorrectAnswers = correctAnswers3.filter(answer => !selectedAnswers.includes(answer));
             }
             
             if (!isCorrect) {
-                const incorrectAnswers = correctAnswers1.filter(answer => !selectedAnswers.includes(answer));
                 document.getElementById("result").innerHTML = `You got the following answers wrong: ${incorrectAnswers.join(', ')}.`;
             } else {
                 document.getElementById("result").innerHTML ='Congratulations, you got all the answers correct!';
@@ -98,7 +106,11 @@
         });
 
         let answersDict = ["general-language", "spelling-grammatical-errors", "spoofed-email-sender", "urgent-language", "spoofed-url", "wrong-redirect"];
-        let correctAnswers1 = ["spelling-grammatical-errors", "urgent-language", "wrong-redirect"];
+        let correctAnswers1 = ["spelling-grammatical-errors", "urgent-language", "wrong-redirect"]; // email_93
+        let correctAnswers2 = ["general-language"]; // email_94
+        let correctAnswers3 = ["general-language", "spoofed-email-sender"]; // email_96
+        let correctAnswers4 = ["spelling-grammatical-errors", "urgent-language", "wrong-redirect"];
+        let correctAnswers5 = ["spelling-grammatical-errors", "urgent-language", "wrong-redirect"]; 
 
 
         // iframe
