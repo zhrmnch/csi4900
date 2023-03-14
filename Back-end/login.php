@@ -1,61 +1,70 @@
-<!DOCTYPE html>
-<html>
+<?php
+$servername = "sql206.epizy.com";
+$username = "epiz_33729702";
+$server_password = "MFFFfJp6Kj";
+$dbname = "epiz_33729702_information__page";
 
-<head>
-    <meta charset="utf-8">
-    <title></title>
-</head>
+$conn = mysqli_connect($servername, $username, $server_password, $dbname);
 
-<body>
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-    <?php
-    $servername = "sql206.epizy.com";
-    $username = "epiz_33729702";
-    $password = "MFFFfJp6Kj";
-    $dbname = "epiz_33729702_information__page";
+$name = $_POST['name'];
+$password = $_POST['password'];
 
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
+$sql = sprintf("SELECT * FROM user_info WHERE user_name = '%s'", $conn->real_escape_string(strtolower($name)));
 
-    // Check connection
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
+$result = $conn->query($sql);
 
-    $name = $_POST['name'];
+$user = $result->fetch_assoc();
 
-    $sql = "SELECT * FROM user_info WHERE user_name='$name'";
-    $result = mysqli_query($conn, $sql);
+if ($user) {
 
-    // If the name exists, redirect to another page
-    if (mysqli_num_rows($result) > 0) {
+    if (password_verify($password, $user["user_password"])) {
+        echo "hereee";
+        session_start();
 
-        $row = mysqli_fetch_assoc($result);
-        if ($row['is_test1_complete'] == 0) {
+        session_regenerate_id();
+
+        $_SESSION["user_id"] = $user["user_id"];
+
+
+        if ($user['is_test1_complete'] == 0) {
             header("location: /pages/test_1/test1.html");
-        } elseif ($row['is_learning_complete'] == 0) {
+            exit;
+        } elseif ($user['is_learning_complete'] == 0) {
             // 0 -> authentic
-            if ($row['user_group'] === 0) {
+            if ($user['user_group'] === 0) {
                 header("location: /pages/authentic/authentic.html");
+                exit;
 
                 //1 -> alternate
-            } elseif ($row['user_group'] == 1) {
+            } elseif ($user['user_group'] == 1) {
                 header("location: /pages/alternate.html");
+                exit;
 
                 // 2 -> ambiguous  
-            } elseif ($row['user_group'] == 2) {
+            } elseif ($user['user_group'] == 2) {
                 echo "Working in progress ...add later";
+                exit;
             }
-        } elseif ($row['is_test2_complete'] == 0) {
+        } elseif ($user['is_test2_complete'] == 0) {
             echo "Working in progress-- ...add later";
+            exit;
         }
 
-        exit();
+    } else {
+        header("location: /login-fail.html");
+        exit;
     }
 
+} else {
+    header("location: /login-fail.html");
+    exit;
 
-    $conn->close();
-    ?>
+}
 
-</body>
-
-</html>
+$conn->close();
+?>
