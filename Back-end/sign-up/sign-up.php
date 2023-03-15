@@ -1,16 +1,4 @@
 <?php
-$servername = "sql206.epizy.com";
-$username = "epiz_33729702";
-$server_password = "MFFFfJp6Kj";
-$dbname = "epiz_33729702_information__page";
-
-$conn = mysqli_connect($servername, $username, $server_password, $dbname);
-
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
 
 if (empty($_POST["name"])) {
     die("Name is required");
@@ -49,7 +37,7 @@ $sql_insert = "INSERT INTO user_info (user_name,user_group,user_confidence,is_te
 
 
 if ($conn->query($sql_insert) === TRUE) {
-    header("location: /signup-success.html");
+    header("location: ../../Front-end/sign-up/signup-success.html");
 } else {
     echo "Error: " . $sql_insert . "<br>" . $conn->error;
 }

@@ -2,10 +2,10 @@
 
 <?php
 
-$servername = "sql206.epizy.com";
-$username = "epiz_33729702";
-$password = "MFFFfJp6Kj";
-$dbname = "epiz_33729702_information__page";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "hp_db";
 
 $mysqli = new mysqli(hostname: $servername,
                      username: $username,

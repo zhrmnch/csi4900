@@ -42,15 +42,16 @@ if (isset($_SESSION['user_id'])) {
         $alter_sql = "UPDATE user_info SET is_test1_complete=1 WHERE user_id=$user_id";
 
         if ($conn->query($alter_sql) === TRUE) {
-            echo "prompt('Thank you for doing the first phase! let's learn more about this topic!')";
+            echo "<script>alert('Thank you for participating in the first phase! let\'s learn more about this topic!');</script>";
+
             // 0 -> authentic
             if ($user['user_group'] === 0) {
-                header("location: /pages/authentic/authentic.html");
+                echo "Working in progress ...add later";
                 exit;
 
                 //1 -> alternate
             } elseif ($user['user_group'] == 1) {
-                header("location: /pages/alternate.html");
+                echo "Working in progress ...add later";
                 exit;
 
                 // 2 -> ambiguous  
