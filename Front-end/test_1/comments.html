@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Feedback</title>
+    <style>
+        body {
+            background-color: #F7F7F7;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 50px auto;
+            text-align: center;
+            width: 80%;
+        }
+
+        h1 {
+            color: #333333;
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        input[type="text"],
+        textarea {
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
+            font-size: 16px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        #submit {
+            background-color: darkred;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 24px;
+            margin-top: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form method="POST" action="../../Back-end/test_info/test1-comment-save.php">
+            <h1>Feedback</h1>
+            <div>
+                <label for="rush">Did you rush through the quiz?</label>
+                <select id="rush" name="rush" required>
+                    <option value="" selected disabled>Pick a number on the scale of 1-10</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+
+            <label for="comments">Do you have any comments or suggestions?</label>
+            <textarea id="comments" name="comments" placeholder="Enter your answer here..."></textarea>
+
+            <button id="submit" onclick="submit()">Submit</button>
+        </form>
+    </div>
+
+</body>
+
+</html>
