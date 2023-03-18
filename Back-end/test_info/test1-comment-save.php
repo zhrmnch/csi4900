@@ -22,7 +22,7 @@ $user_comment = $_POST['comments'];
 
 
 
-$sql_insert = "UPDATE test1_info SET scale_rush= ? , user_comment=? WHERE user_id = {$user['user_id']};";
+$sql_insert = "UPDATE test1_result SET scale_rush= ? , user_comment=? WHERE user_id = {$user['user_id']};";
 
 $stmt = $mysqli->stmt_init();
 if (!$stmt->prepare($sql_insert)) {
