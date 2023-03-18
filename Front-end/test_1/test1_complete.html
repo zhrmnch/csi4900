@@ -1,16 +1,55 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Test 1 Complete</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F8F8FF;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            width: 400px;
+            padding: 40px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+        }
+
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+
+        @media screen and (max-width: 480px) {
+            form {
+                width: 80%;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    
-    <h1>Test 1 Complete</h1>
-    
-    <p>Thank you for participating! Please come back to learn more!</p>
-    <p><a href='../../index.php'>Go Home!</a></p>
-    
+    <div class="container">
+        <form>
+
+            <h1>Test 1 Complete</h1>
+
+            <p>Thank you for participating! Please come back to learn more!</p>
+            <p><a href='../../index.php'>Go Home!</a></p>
+        </form>
+    </div>
 </body>
+
 </html>

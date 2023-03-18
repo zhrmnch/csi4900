@@ -34,6 +34,7 @@
 			margin-bottom: 20px;
 			box-sizing: border-box;
 		}
+
 		input[type="password"],
 		select {
 			display: block;
@@ -53,18 +54,29 @@
 		input[type="submit"] {
 			background-color: darkred;
 			color: #fff;
+			float: right;
 			border: none;
 			padding: 10px 20px;
 			border-radius: 5px;
 			cursor: pointer;
+
+		}
+
+		button[type=button] {
+			background-color: darkred;
+			color: #fff;
+			float: left;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+
 		}
 
 		input[type="submit"]:hover {
 			background-color: red;
 		}
 	</style>
-	<script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js" defer></script>
-	<script src="../../Back-end/sign-up/validation.js" defer></script>
 </head>
 
 <body>
@@ -106,18 +118,21 @@
 		<div>
 			<label for="tech-field">Are you in a tech related field?</label>
 			<div>
-				<input type="radio" id="yes" name="tech-field" value="1"/>
+				<input type="radio" id="yes" name="tech-field" value="1" />
 				<label for="TRUE">Yes</label>
 			</div>
 			<div>
-				<input type="radio" id="no" name="tech-field" value="0" checked/>
+				<input type="radio" id="no" name="tech-field" value="0" checked />
 				<label for="FALSE">No</label>
 			</div>
 
 		</div>
 
-		<input type="submit" value="Sign up">
+		<button type="button" onclick="location.href='../../index.php'">Back</button>
+		<input type="submit" value="Sign up"/>
+		<div style="clear: both;"></div>
 
+	</form>
 </body>
 
 </html>

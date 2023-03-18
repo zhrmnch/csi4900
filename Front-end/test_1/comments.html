@@ -4,56 +4,89 @@
 <head>
     <title>Feedback</title>
     <style>
-        body {
-            background-color: #F7F7F7;
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            margin: 0;
-            padding: 0;
-        }
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
 
-        .container {
-            margin: 50px auto;
-            text-align: center;
-            width: 80%;
-        }
+		form {
+			margin: 20px auto;
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+			border-radius: 5px;
+			width: 400px;
+		}
 
-        h1 {
-            color: #333333;
-            font-size: 36px;
-            margin-bottom: 30px;
-        }
+		label {
+			display: inline-block;
+			margin-bottom: 10px;
+			font-weight: bold;
+		}
 
-        label {
-            display: block;
-            font-size: 24px;
-            margin-bottom: 10px;
-            text-align: left;
-        }
+		input[type="text"],
+		select {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			margin-bottom: 20px;
+			box-sizing: border-box;
+		}
 
-        input[type="text"],
-        textarea {
-            border: 1px solid #CCCCCC;
-            border-radius: 5px;
-            font-size: 16px;
-            padding: 10px;
-            width: 100%;
-        }
+		input[type="password"],
+		select {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			margin-bottom: 20px;
+			box-sizing: border-box;
+		}
 
-        #submit {
-            background-color: darkred;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            cursor: pointer;
-            font-size: 24px;
+		input[type="radio"] {
+			display: inline-block;
+			margin-right: 10px;
+		}
+
+		input[type="submit"] {
+			background-color: darkred;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+
+		}
+
+		button[type=submit] {
+			background-color: darkred;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
             margin-top: 20px;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            width: 200px;
-        }
-    </style>
+			cursor: pointer;
+            display: block;
+            float: right;
+
+		}
+
+		input[type="submit"]:hover {
+			background-color: red;
+		}
+        textarea{
+			display: block;
+			width: 100%;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			margin-bottom: 20px;
+			box-sizing: border-box;
+		}
+	</style>
 </head>
 
 <body>
@@ -77,9 +110,9 @@
                 </select>
 
             <label for="comments">Do you have any comments or suggestions?</label>
-            <textarea id="comments" name="comments" placeholder="Enter your answer here..."></textarea>
-
-            <button id="submit" onclick="submit()">Submit</button>
+            <textarea type="text" id="comments" name="comments" placeholder="Enter your answer here..."></textarea>
+            <button type= "submit" id="submit" onclick="submit()">Submit</button>
+            <div style="clear: both;"></div>
         </form>
     </div>
 

@@ -1,17 +1,55 @@
 <!-- Code taken from : https://github.com/daveh/php-signup-login/blob/main/signup-success.html -->
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Signup</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F8F8FF;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            width: 400px;
+            padding: 40px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+
+        @media screen and (max-width: 480px) {
+            form {
+                width: 80%;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    
-    <h1>Signup</h1>
-    
-    <p>Signup successful.
-       You can now <a href="../../Back-end/login/login.php">log in</a>.</p>
-    
+
+    <div class="container">
+        <form>
+
+            <h1>Thank you for signing up!</h1>
+
+            <p>Your account has been created successfully. You can now <a href="../../Back-end/login/login.php">log in</a>.</p>
+        </form>
+    </div>
 </body>
+
 </html>
