@@ -21,7 +21,7 @@ if ($_POST["password"] !== $_POST["password_confirmation"]) {
 }
 
 
-$mysqli = require "..\database.php";
+$mysqli = require "../database.php";
 
 $name = strtolower($_POST['name']);
 $confidence = $_POST['confidence'];
