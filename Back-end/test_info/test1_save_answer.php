@@ -20,7 +20,7 @@ $user_id = $user["user_id"];
 $answer = json_decode(file_get_contents("php://input"), true);
 
 
-$sql_insert = "INSERT INTO test1_info (user_id,user_answer) VALUES (?,?)";
+$sql_insert = "INSERT INTO test1_result (user_id,user_answer) VALUES (?,?)";
 
 $stmt = $mysqli->stmt_init();
 if (!$stmt->prepare($sql_insert)) {
