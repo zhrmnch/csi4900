@@ -1,5 +1,7 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+
 if (empty($_POST["name"])) {
     die("Name is required");
 }
@@ -29,6 +31,7 @@ $tech_field = $_POST['tech-field'];
 $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
 
+
 $sql_get_len = "SELECT COUNT(*) AS num_rows FROM user_info;";
 $result = mysqli_query($mysqli, $sql_get_len);
 $row = mysqli_fetch_assoc($result);
@@ -47,15 +50,9 @@ if (!$stmt->prepare($sql_insert)) {
 $stmt->bind_param("siiis", $name, $user_group, $confidence, $tech_field, $password_hash);
 
 if ($stmt->execute()) {
-
-    header("Location: ../../Front-end/sign-up/signup-success.html");
+    header("Location:../../Front-end/sign-up/signup-success.html");
     exit;
 
 } else {
-
-    if ($mysqli->errno === 1062) {
-        die("email already taken");
-    } else {
-        die($mysqli->error . " " . $mysqli->errno);
-    }
+    die($mysqli->error . " " . $mysqli->errno);
 }

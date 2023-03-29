@@ -4,6 +4,7 @@ session_start();
 
 if (isset($_SESSION["user_id"])) {
 
+
     $mysqli = require "Back-end/database.php";
 
     $sql = "SELECT * FROM user_info

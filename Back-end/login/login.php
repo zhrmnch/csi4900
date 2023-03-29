@@ -1,7 +1,5 @@
 <?php
 
-//from: https://github.com/daveh/php-signup-login/blob/main/login.php
-
 $is_invalid = false;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {

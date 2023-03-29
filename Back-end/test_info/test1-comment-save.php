@@ -15,14 +15,14 @@ if (isset($_SESSION["user_id"])) {
 }
 
 
-$mysqli = require "..\database.php";
+$mysqli = require "../database.php";
 $user_id = $user["user_id"];
 $rush_scale = $_POST['rush'];
 $user_comment = $_POST['comments'];
 
 
 
-$sql_insert = "UPDATE test1_info SET scale_rush= ? , user_comment=? WHERE user_id = {$user['user_id']};";
+$sql_insert = "UPDATE test1_result SET scale_rush= ? , user_comment=? WHERE user_id = {$user['user_id']};";
 
 $stmt = $mysqli->stmt_init();
 if (!$stmt->prepare($sql_insert)) {

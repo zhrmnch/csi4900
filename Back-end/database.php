@@ -1,11 +1,11 @@
-<!-- Code taken from : https://github.com/daveh/php-signup-login/blob/main/database.php -->
+
 
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "hp_db";
+$servername = "us-cdbr-east-06.cleardb.net";
+$username = "b838b2923dd5db";
+$password = "54a1f26c";
+$dbname = "heroku_394277472ffc4b2";
 
 $mysqli = new mysqli(hostname: $servername,
                      username: $username,
