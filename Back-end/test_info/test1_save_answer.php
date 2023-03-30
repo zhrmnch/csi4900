@@ -15,7 +15,7 @@ if (isset($_SESSION["user_id"])) {
 }
 
 
-$mysqli = require "..\database.php";
+$mysqli = require "../database.php";
 $user_id = $user["user_id"];
 $answer = json_decode(file_get_contents("php://input"), true);
 
