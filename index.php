@@ -79,6 +79,37 @@ if (isset($_SESSION["user_id"])) {
 
                 <?php endif; ?>
 
+                <?php if ($user["is_learning_complete"] == 0): ?>
+                    <?php if ($user["is_test1_complete"] == 0): ?>
+                        <?php if ($user["user_group"] == 2): ?>
+                            <p>Final test unlocks when you complete test1.</p>
+                        <?php else: ?>
+                            <p>Learning phase unlocks when you complete test1.</p>
+                        <?php endif; ?>
+
+                    <?php else: ?>
+                        <?php if ($user["user_group"] == 0): ?>
+
+                            <p><a href='Front-end/learning/method_1/method1_intro.html'>Learning</a></p>
+                        <?php endif; ?>
+                        <?php if ($user["user_group"] == 1): ?>
+                            <p><a href='Front-end/learning/method_2/method2_intro.html'>Learning</a></p>
+
+                        <?php endif; ?>
+                        <?php if ($user["user_group"] == 2): ?>
+                            <p>Final test unlocks soon. Please check later. Thank you!</p>
+
+                        <?php endif; ?>
+
+                    <?php endif; ?>
+
+                <?php else: ?>
+
+                    <p>Final test unlocks soon. Please check later. Thank you!</p>
+
+                <?php endif; ?>
+
+
                 <p><a type="logout" href="Back-end/login/logout.php">Log out</a></p>
             <?php else: ?>
 

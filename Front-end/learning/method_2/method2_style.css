@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F7F7F7;
+}
+h1 {
+    font-size: 40px;
+    text-align: center;
+    margin-top: 50px;
+}
+#result {
+    font-size: 20px;
+    margin-top: 20px;
+}
+#email-container {
+    border: 1px solid #ccc;
+    background-color: white;
+    padding-left: 10px;
+}
+.draggable {
+    cursor: move;
+    text-align: center;
+    margin-top: 10px;
+    padding: 5px;
+    background-color: lightblue;
+    width: 170px;
+    overflow:hidden;
+    border-radius: 10px;
+}
+.target {
+    pointer-events: none;
+}
+.header-container {
+    display: flex;
+    align-items: center;
+}
+
+h2 {
+    margin-right: 10px;
+}
+
+
+
+.all-attribute {
+    display: inline-block;
+    position: relative;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.description {
+    visibility: hidden;
+    position: absolute;
+    z-index: 2;
+    width: 275px;
+    color: white;
+    font-size: 16px;
+    background-color: black;
+    border-radius: 10px;
+    padding: 10px 15px 10px 15px;
+    top: 120%; /* Change from 'bottom' to 'top' */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.description::before {
+    content: "";
+    position: absolute;
+    transform: rotate(45deg);
+    background-color: black;
+    padding: 5px;
+    z-index: 1;
+    top: -10px; /* Change from 'bottom' to 'top' */
+    left: calc(50% - 5px);
+}
+
+
+.all-attribute:hover .description {
+    visibility: visible;
+}
