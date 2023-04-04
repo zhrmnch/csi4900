@@ -2,10 +2,10 @@
 
 <?php
 
-$servername = "us-cdbr-east-06.cleardb.net";
-$username = "b838b2923dd5db";
-$password = "54a1f26c";
-$dbname = "heroku_394277472ffc4b2";
+$servername = "";
+$username = "";
+$password = "";
+$dbname = "";
 
 $mysqli = new mysqli(hostname: $servername,
                      username: $username,
